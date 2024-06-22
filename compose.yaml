@@ -1,0 +1,23 @@
+version: "3.0"
+
+services:
+  api:
+    container_name: "stock_server"
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/backend
+    ports:
+      - 8080:8080
+
+  frontend:
+    container_name: "stock_display"
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - 8501:8501
+    depends_on:
+      - api
+
