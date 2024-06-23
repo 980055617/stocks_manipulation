@@ -88,9 +88,15 @@ post '/register/' do
     user_holdings.each do |user_holding|
       holding_is_registered = BrandList.where(brand_name: user_holding.brand_name)
       if holding_is_registered.count == 0
-        url = "https://aa0c-2400-4151-121-2800-9179-5751-1abc-94e.ngrok-free.app/"
+        url = "hhttp://127.0.0.1:8050/stock"
         data = {stock_code: user_holding.brand_name, range: "1mo"}
         response = HTTParty.get(url, body: data.to_json, headers: {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+        response_data = JSON.parse(response.body)
+        count_val = 1
+        response_data.each do |data_per_day|
+          svm = StockValueMonth.create({brand_name: data_per_day['brand_name'], order_no: count_val, time: response_data["Date"], high: response_data["High"], low: response_data["Low"], open: response_data["Open"], close: response_data["Close"]})
+          count_val += 1
+        end
         new_brand_list = BrandList.create({brand_name: user_holding.brand_name})
       end
     end
