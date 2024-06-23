@@ -22,13 +22,21 @@ create table holdings(
 create table stock_value_week(
     brand_name text,
     order_no integer,
-    brand_value real
+    time text,
+    high real,
+    low real,
+    open real,
+    close real
 );
 
 create table stock_value_month(
     brand_name test,
     order_no integer,
-    brand_value real
+    time text,
+    high real,
+    low real,
+    open real,
+    close real
 );
 
 insert into users values ('ryota', 'twins');

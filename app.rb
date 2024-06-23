@@ -4,6 +4,8 @@ require 'bcrypt'
 require 'sinatra'
 require 'sqlite3'
 require 'active_record'
+require 'httparty'
+require 'json'
 
 enable :sessions
 
@@ -17,6 +19,18 @@ class Users < ActiveRecord::Base
 end
 
 class Holdings < ActiveRecord::Base
+
+end
+
+class BrandList < ActiveRecord::Base
+
+end
+
+class StockValueWeek < ActiveRecord::Base
+
+end
+
+class StockValueMonth < ActiveRecord::Base
 
 end
 
@@ -71,9 +85,14 @@ post '/register/' do
 
     # データベースへの登録
     user_holdings = Holdings.where(username: params['username'])
-    for user_holding in user_holdings
-      holding_name = user_holding.brand_name
-      
+    user_holdings.each do |user_holding|
+      holding_is_registered = BrandList.where(brand_name: user_holding.brand_name)
+      if holding_is_registered.count == 0
+        url = "https://aa0c-2400-4151-121-2800-9179-5751-1abc-94e.ngrok-free.app/"
+        data = {stock_code: user_holding.brand_name, range: "1mo"}
+        response = HTTParty.get(url, body: data.to_json, headers: {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+        new_brand_list = BrandList.create({brand_name: user_holding.brand_name})
+      end
     end
   end
 end

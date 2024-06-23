@@ -12,3 +12,5 @@ gem "sqlite3", "~> 1.4"
 gem "sinatra-activerecord", "~> 2.0"
 
 gem "rake", "~> 13.2"
+
+gem "httparty", "~> 0.22.0"
