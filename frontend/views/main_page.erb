@@ -1,54 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>ユーザーの保有銘柄</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <h1>ようこそ、<%= session[:username] %>さん！</h1>
-  <h2>あなたの保有銘柄:</h2>
-  <ul>
-    <% @holdings.each do |holding| %>
-      <li>
-        <strong>銘柄名:</strong> <%= holding.brand_name %>
-        <canvas id="chart-<%= holding.brand_name %>" width="400" height="200"></canvas>
-      </li>
-    <% end %>
-  </ul>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      <% @holdings.each do |holding| %>
-        // 仮のデータを使用
-        var data = [
-          { x: '2024-06-17T10:00:00', y: 150 },
-          { x: '2024-06-17T11:00:00', y: 152 },
-          { x: '2024-06-17T12:00:00', y: 148 },
-          { x: '2024-06-17T13:00:00', y: 151 },
-          { x: '2024-06-17T14:00:00', y: 153 },
-          { x: '2024-06-18T10:00:00', y: 155 },
-          { x: '2024-06-18T11:00:00', y: 157 },
-          { x: '2024-06-18T12:00:00', y: 158 },
-          { x: '2024-06-18T13:00:00', y: 160 },
-          { x: '2024-06-18T14:00:00', y: 162 }
-        ];
-
-        var ctx = document.getElementById('chart-<%= holding.brand_name %>').getContext('2d');
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            datasets: [{
-              label: '<%= holding.brand_name %>',
-              data: data,
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1,
-              fill: false
-            }]
-          },
-          options: {
-            scales: {
-              x: {
-                type: 'time',
-                time: {
-                  unit:
+<ul>
+  <% @messages.each do |message| %>
+    <li><%= message.username %>: <%= message.brand_name %></li>
+  <% end %>
+</ul>
