@@ -40,6 +40,8 @@ GEM
       webrick (~> 1.8)
     rake (13.2.1)
     ruby2_keywords (0.0.5)
+    sequel (5.81.0)
+      bigdecimal
     sinatra (4.0.0)
       mustermann (~> 3.0)
       rack (>= 3.0.0, < 4)
@@ -49,7 +51,8 @@ GEM
     sinatra-activerecord (2.0.27)
       activerecord (>= 4.1)
       sinatra (>= 1.0)
-    sqlite3 (2.0.2-x64-mingw-ucrt)
+    sqlite3 (1.7.3-x64-mingw-ucrt)
+    sqlite3 (1.7.3-x86_64-linux)
     tilt (2.3.0)
     timeout (0.4.1)
     tzinfo (2.0.6)
@@ -58,15 +61,17 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x86_64-linux
 
 DEPENDENCIES
   activerecord (~> 7.1)
   bcrypt (~> 3.1)
   rackup (~> 2.1)
   rake (~> 13.2)
+  sequel
   sinatra
   sinatra-activerecord (~> 2.0)
-  sqlite3 (~> 2.0)
+  sqlite3 (~> 1.4)
 
 BUNDLED WITH
    2.5.14

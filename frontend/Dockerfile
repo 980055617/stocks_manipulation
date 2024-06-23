@@ -1,11 +1,13 @@
-FROM python:3.10.10
+FROM ruby:3.3
 
 WORKDIR /frontend
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY Gemfile Gemfile.lock ./
 
+RUN bundle install
 
 COPY . .
 
-CMD ["streamlit", "run", "app.py", "--server.port", "8501"]
+EXPOSE 8501
+
+CMD ["bundle", "exec", "ruby", "app.rb", "-o", "0.0.0.0","-p","8501"]
