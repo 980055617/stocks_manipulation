@@ -116,6 +116,13 @@ get '/:username/' do
   if session[:username] != params['username']
     redirect '/login/'
   end
-  @messages = Holdings.where("username LIKE '#{params['username']}'")
+  holdings = Holdings.where("username LIKE '#{params['username']}'")
+  message = []
+  holdings.each do |holding|
+    message.push(
+      [StockValueMonth.where(brand_name: holding.brand_name)]
+    )
+  end
+  @message = message
   erb :main_page
 end
