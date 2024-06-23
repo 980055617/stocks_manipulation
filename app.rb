@@ -124,7 +124,7 @@ get '/:username/' do
   message = []
   holdings.each do |holding|
     message.push(
-      [StockValueMonth.where(brand_name: holding.brand_name)]
+      StockValueMonth.where(brand_name: holding.brand_name)
     )
   end
   @message = message
