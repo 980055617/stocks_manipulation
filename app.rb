@@ -95,8 +95,8 @@ post '/register/' do
         response_data = JSON.parse(response.body)
         count_val = 1
         response_data.each do |data_per_day|
-          print data_per_day
-          svm = StockValueMonth.create({brand_name: data_per_day['brand_name'], order_no: count_val, time: data_per_day["Date"], high: data_per_day["High"], low: data_per_day["Low"], open: data_per_day["Open"], close: data_per_day["Close"]})
+          print user_holding.brand_name
+          svm = StockValueMonth.create({brand_name: user_holding.brand_name, order_no: count_val, time: data_per_day["Date"], high: data_per_day["High"], low: data_per_day["Low"], open: data_per_day["Open"], close: data_per_day["Close"]})
           count_val += 1
         end
         new_brand_list = BrandList.create({brand_name: user_holding.brand_name})
@@ -128,5 +128,6 @@ get '/:username/' do
     )
   end
   @message = message
+  print @message
   erb :main_page
 end

@@ -1,5 +1,6 @@
 <ul>
-  <% @messages.each do |stock_data_list| %>
+  <% mess = @message %>"
+  <% mess.each do |stock_data_list| %>
     <% stock_data_list.each do |stock_data| %>
     <li>
       <%=stock_data.brand_name %><%=stock_data.high %>

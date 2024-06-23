@@ -1,8 +1,8 @@
 drop table if exists users;
 drop table if exists brand_lists;
 drop table if exists holdings;
-drop table if exists stock_value_week;
-drop table if exists stock_value_month;
+drop table if exists stock_value_weeks;
+drop table if exists stock_value_months;
 
 create table users(
     username text,
@@ -30,7 +30,7 @@ create table stock_value_weeks(
 );
 
 create table stock_value_months(
-    brand_name test,
+    brand_name text,
     order_no integer,
     time text,
     high real,
