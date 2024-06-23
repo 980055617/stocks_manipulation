@@ -7,7 +7,7 @@ gem "bcrypt", "~> 3.1"
 
 gem "activerecord", "~> 7.1"
 
-gem "sqlite3", "~> 2.0"
+gem "sqlite3", "~> 1.4"
 
 gem "sinatra-activerecord", "~> 2.0"
 

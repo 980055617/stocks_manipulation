@@ -33,7 +33,7 @@
     <orderEntry type="library" scope="PROVIDED" name="ruby2_keywords (v0.0.5, ruby-3.3.3-p89) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v4.0.0, ruby-3.3.3-p89) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra-activerecord (v2.0.27, ruby-3.3.3-p89) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v2.0.2, ruby-3.3.3-p89) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.7.3, ruby-3.3.3-p89) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.3.0, ruby-3.3.3-p89) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timeout (v0.4.1, ruby-3.3.3-p89) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.6, ruby-3.3.3-p89) [gem]" level="application" />

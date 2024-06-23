@@ -5,7 +5,6 @@ drop table if exists stock_value_week;
 drop table if exists stock_value_month;
 
 create table users(
-    id text,
     username text,
     password text
 );
@@ -15,22 +14,23 @@ create table brand_list(
 );
 
 create table holdings(
-    id text,
+    username text,
+    order_no integer,
     brand_name text
 );
 
 create table stock_value_week(
     brand_name text,
-    order integer,
-    value real
+    order_no integer,
+    brand_value real
 );
 
 create table stock_value_month(
     brand_name test,
-    order integer,
-    value real
+    order_no integer,
+    brand_value real
 );
 
-insert into users values ('test', 'ryota', 'twins');
+insert into users values ('ryota', 'twins');
 insert into brand_list values ('AAPL');
-insert into holdings values('test', 'AAPL');
+insert into holdings values('ryota', 1, 'AAPL');

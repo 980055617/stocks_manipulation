@@ -2,13 +2,23 @@
 
 require 'bcrypt'
 require 'sinatra'
-require 'sequel'
 require 'sqlite3'
 require 'active_record'
 
 enable :sessions
 
-ActiveRecord::Base.establish_connection(YAML.load_file('config/database.yml')['development'])
+ActiveRecord::Base.establish_connection(
+  adapter: "sqlite3",
+  database: "./db/users.db"
+)
+
+class Users < ActiveRecord::Base
+
+end
+
+class Holdings < ActiveRecord::Base
+
+end
 
 users = {
   'ryota' => BCrypt::Password.create('twins')
@@ -23,17 +33,33 @@ get '/login/' do
   erb :login
 end
 
-get '/login' do
-  "Hello World"
-end
-
 post '/login/' do
-  user = users[params['username']]
-  if user && BCrypt::Password.new(user) == params['password']
+  user = Users.where(username: params['username'], password: params['password']).count
+  print user
+  if user > 0
     session[:username] = params['username']
     redirect "/#{params['username']}/"
   else
     redirect '/login/'
+  end
+end
+
+get '/register/' do
+  erb :register
+end
+
+post '/register/' do
+  username_count = Users.where(username: params['username']).count
+  if username_count > 0
+    redirect '/register/'
+  else
+    user = Users.create(
+      username: params['username'],
+      password: params['password']
+    )
+    holdings = Holdings.create([
+                                 {}
+                               ])
   end
 end
 
@@ -50,6 +76,6 @@ get '/:username/' do
   if session[:username] != params['username']
     redirect '/login/'
   end
-
+  @messages = Holdings.where("id LIKE 'test'")
   erb :main_page
 end
