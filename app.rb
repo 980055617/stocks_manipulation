@@ -58,8 +58,23 @@ post '/register/' do
       password: params['password']
     )
     holdings = Holdings.create([
-                                 {}
+                                 {username: params['username'], order_no: 1, brand_name: params['brand1']},
+                                 {username: params['username'], order_no: 2, brand_name: params['brand2']},
+                                 {username: params['username'], order_no: 3, brand_name: params['brand3']},
+                                 {username: params['username'], order_no: 4, brand_name: params['brand4']},
+                                 {username: params['username'], order_no: 5, brand_name: params['brand5']},
+                                 {username: params['username'], order_no: 6, brand_name: params['brand6']},
+                                 {username: params['username'], order_no: 7, brand_name: params['brand7']},
+                                 {username: params['username'], order_no: 8, brand_name: params['brand8']},
+                                 {username: params['username'], order_no: 9, brand_name: params['brand9']},
                                ])
+
+    # データベースへの登録
+    user_holdings = Holdings.where(username: params['username'])
+    for user_holding in user_holdings
+      holding_name = user_holding.brand_name
+      
+    end
   end
 end
 
@@ -76,6 +91,6 @@ get '/:username/' do
   if session[:username] != params['username']
     redirect '/login/'
   end
-  @messages = Holdings.where("id LIKE 'test'")
+  @messages = Holdings.where("username LIKE '#{params['username']}'")
   erb :main_page
 end
