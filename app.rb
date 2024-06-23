@@ -88,18 +88,22 @@ post '/register/' do
     user_holdings.each do |user_holding|
       holding_is_registered = BrandList.where(brand_name: user_holding.brand_name)
       if holding_is_registered.count == 0
-        url = "hhttp://127.0.0.1:8050/stock"
+        url = "http://127.0.0.1:8050/stock"
         data = {stock_code: user_holding.brand_name, range: "1mo"}
-        response = HTTParty.get(url, body: data.to_json, headers: {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+        print data
+        response = HTTParty.post(url, body: data.to_json, headers: {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
         response_data = JSON.parse(response.body)
         count_val = 1
         response_data.each do |data_per_day|
-          svm = StockValueMonth.create({brand_name: data_per_day['brand_name'], order_no: count_val, time: response_data["Date"], high: response_data["High"], low: response_data["Low"], open: response_data["Open"], close: response_data["Close"]})
+          print data_per_day
+          svm = StockValueMonth.create({brand_name: data_per_day['brand_name'], order_no: count_val, time: data_per_day["Date"], high: data_per_day["High"], low: data_per_day["Low"], open: data_per_day["Open"], close: data_per_day["Close"]})
           count_val += 1
         end
         new_brand_list = BrandList.create({brand_name: user_holding.brand_name})
       end
     end
+    session[:username] = params['username']
+    redirect "/#{params['username']}/"
   end
 end
 
